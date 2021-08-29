@@ -1,11 +1,14 @@
 const url = 'https://randomuser.me/api/'
 
 
-fetch(url)
+const loadUser = ()=>{
+  fetch(url)
     .then(res => res.json())
     .then(data => displayUser(data))
 
 
+}
+loadUser()
 const displayUser = (userData) =>{
     const container = document.getElementById('container');
     const div = document.createElement('div');
@@ -16,6 +19,7 @@ const displayUser = (userData) =>{
     const country = userData.results[0].location.country;
     const timezone = userData.results[0].location.timezone;
     console.log(userData.results[0])
+    container.textContent = ''
     div.innerHTML =
     `
     <div class="card mx-auto" style="width: 25rem;">
@@ -34,5 +38,6 @@ const displayUser = (userData) =>{
     container.appendChild(div)
 }
 const refresh = () => {
-  window.location.reload();
+  // window.location.reload();
+  loadUser()
 }
